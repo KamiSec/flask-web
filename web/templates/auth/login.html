@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}KamiSec - Login{% endblock %}
+
+{% block page_container %}
+
+<div class="page-header">
+    <h5>登录</h5>
+</div>
+
+<div class="col-md-8">
+    {%  include 'formerror.html' %}
+    <form class="form"  action="{{ url_for('auth.login') }}" method="POST">
+        <div class="form-group">
+            {{ form.hidden_tag() }}
+
+            {{ form.email.label }}{{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.password.label }}{{ form.password(class="form-control") }}</div>
+        <div class="form-group">
+            {{ form.remember_me() }}
+
+            {{ form.remember_me.label }}</div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-block btn-lg btn-info") }}
+        </div>
+    </form>
+
+    <br>
+    <p>Forgot your password? <a href="{{ url_for('auth.password_reset_request') }}">Click here to reset it</a>.</p>
+    <p>New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</p>
+</div>
+{% endblock %}

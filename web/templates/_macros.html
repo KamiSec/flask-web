@@ -1,0 +1,45 @@
+{% macro pagination_widget(pagination, endpoint) %}
+<div>
+    {% if pagination.has_prev %}
+    <a href="{{ url_for(endpoint,page=pagination.page-1, **kwargs) }}" class="btn btn-inverse previous">
+        <i class="fui-arrow-left"></i>
+        上一页
+    </a>
+    {% else %}
+        <a href="#" class="btn btn-inverse previous disabled">
+        <i class="fui-arrow-left"></i>
+        上一页
+        </a>
+    {% endif %}
+
+    <ul class="pagination pagination-inverse">
+        {% for p in pagination.iter_pages(left_edge=1,left_current=2,right_current=3,right_edge=1) %}
+        {% if p %}
+        {% if p == pagination.page %}
+            <li class="active"><a href="{{ url_for(endpoint,page=p, **kwargs) }}">{{ p }}</a></li>
+            {% else %}
+            <li><a href="{{ url_for(endpoint,page=p, **kwargs) }}">{{ p }}</a></li>
+            {% endif %}
+        {% else %}
+        <li class="disabled"><a href="#">&hellip;</a></li>
+
+        {% endif %}
+        {% endfor %}
+    </ul>
+
+    {% if pagination.has_next %}
+
+    <a href="{{ url_for(endpoint,page=pagination.page+1, **kwargs) }}" class="btn btn-inverse next">
+        下一页
+        <i class="fui-arrow-right"></i>
+    </a>
+    {% else %}
+        <a href="#" class="btn btn-inverse previous disabled">
+        <i class="fui-arrow-left"></i>
+        下一页
+        </a>
+    {% endif %}
+</div> <!-- /pagination -->
+
+
+{% endmacro %}

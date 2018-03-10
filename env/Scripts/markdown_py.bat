@@ -1,0 +1,1 @@
+@"F:\python\app\env\Scripts\python.exe" "F:\python\app\env\Scripts\markdown_py" %*
